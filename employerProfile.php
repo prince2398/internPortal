@@ -1,4 +1,4 @@
-<?php include("/includes/overall/header.php"); ?>
+<?php include("includes/overall/header.php"); ?>
 
     <main role="main" class="container">
 
@@ -17,6 +17,17 @@
           </a>
         </div>
       </div>
+      <div class="jumbotron row">
+        <div class="col-9">
+          <h3>Profile</h3>
+          <h5>Company</h5>
+        </div>
+        <div class="col-3">
+          <a href="applicantList.php">
+          123
+          </a>
+        </div>
+      </div>
     </main>
 
-<?php include("/includes/overall/footer.php"); ?>
+<?php include("includes/overall/footer.php"); ?>
