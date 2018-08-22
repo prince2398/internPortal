@@ -12,7 +12,7 @@
           <h5>Company</h5>
         </div>
         <div class="col-3">
-          <a href="applicantList.php">
+          <a href="applicants.php">
           123
           </a>
         </div>
@@ -23,7 +23,7 @@
           <h5>Company</h5>
         </div>
         <div class="col-3">
-          <a href="applicantList.php">
+          <a href="applicants.php">
           123
           </a>
         </div>
