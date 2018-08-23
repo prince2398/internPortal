@@ -2,6 +2,11 @@
     function loggedIn(){
         return (isset($_SESSION['userId']))? true:false;
     }
+    function loggedInRedirect(){
+        if(loggedIn()){
+            header('Location: '.HOME);
+        }
+    }
     function outputErrors($errors){
         $output = "<ul>";
         foreach ($errors as $error) {

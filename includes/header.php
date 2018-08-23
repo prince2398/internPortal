@@ -12,23 +12,25 @@
           <li class="nav-item active">
             <a class="nav-link" href=<?php echo '"'.HOME.'"';?>>Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="postIntern.php">Post an Internship</a>
-          </li>
+          </li> -->
           <?php if (loggedIn()) { ?>
                   <li class="nav-item dropdown">
                     <?php if($_SESSION['type'] === 'student') { ?>
                             <a class="nav-link dropdown-toggle" href="studentProfile.php" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-                              $data = getStudentData($_SESSION['userId'],'firstName');
-                              echo $data['fisrtName'];
+                              if($data = getStudentData($_SESSION['userId'],'firstName')){
+                                echo $data[firstName];
+                              }
                             ?></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown01">
                                     <a class="dropdown-item" href="studentProfile.php">My Profile</a>
                             </div>
                     <?php }elseif($_SESSION['type'] === 'employer') { ?>
                               <a class="nav-link dropdown-toggle" href="employerProfile.php" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-                                $data = getEmployerData($_SESSION['userId'],'firstName');
-                                print_r($data);
+                                if($data = getEmployerData($_SESSION['userId'],'companyName')){
+                                  echo $data['companyName'];
+                                }
                               ?></a>
                               <div class="dropdown-menu" aria-labelledby="dropdown01">
                                       <a class="dropdown-item" href="employerProfile.php">My Profile</a>

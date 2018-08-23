@@ -1,4 +1,12 @@
-<?php include("includes/overall/header.php"); ?>
+<?php
+require("core/init.php");
+loggedInRedirect();
+
+
+
+
+include("includes/overall/header.php");
+?>
 
     <main role="main" class="container">
       <h1>Register</h1>

@@ -34,7 +34,7 @@
         if($argsNum > 1){
             unset($argsVal[0]);
             $fields = '`'.implode('`,`',$argsVal).'`';
-            $query = "SELECT $fields FROM `employer` WHERE `employerId`=$employerID";
+            $query = "SELECT $fields FROM `employer` WHERE `employerId`=$employerId";
             $result = mysqli_query($db,$query);
             return mysqli_fetch_assoc($result);
         }else{
