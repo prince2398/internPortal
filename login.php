@@ -1,5 +1,5 @@
 <?php
-include("core/init.php");
+require("core/init.php");
 if(loggedIn()){
     header('Location: '.HOME);
 }

@@ -1,15 +1,20 @@
 <?php include("includes/overall/header.php"); ?>
 
     <main role="main" class="container">
-
-      <div class="">
-        <h1 >Internship Portal</h1>
-        <p class="lead">Start your intern or Post an intern</p>
+      <h1 class="display-4">Internships<br><br></h1>
+      <div class="jumbotron row">
+        <div class="col-9">
+          <h3>Profile</h3>
+          <h5>Company</h5>
+        </div>
+        <button class="btn btn-primary " <?php if (loggedin() && ($_SESSION['type']==='employer')) { echo 'disabled';}?>>Apply</button>
       </div>
-
-      <div>
-        <button type="button" class="btn btn-primary">Student</button>
-        <button type="button" class="btn btn-primary">Employer</button>
+      <div class="jumbotron row">
+        <div class="col-9">
+          <h3>Profile</h3>
+          <h5>Company</h5>
+        </div>
+        <button class="btn btn-primary">Apply</button>
       </div>
     </main>
 

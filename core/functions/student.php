@@ -23,4 +23,22 @@
         $studentId = mysqli_fetch_array($query);
         return $studentId[0];
     }
+    function getStudentData($studentId){
+        global $db;
+        $data = array();
+        $studentId = (int)$studentId;
+
+        $argsNum = func_num_args();
+        $argsVal = func_get_args();
+
+        if($argsNum > 1){
+            unset($argsVal[0]);
+            $fields = '`'.implode('`,`',$argsVal).'`';
+            $query = "SELECT $fields FROM `student` WHERE `studentId`=$studentId";
+            $result = mysqli_query($db,$query);
+            return mysqli_fetch_assoc($result);
+        }else{
+            return false;
+        }
+    }
 ?>

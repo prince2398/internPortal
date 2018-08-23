@@ -23,4 +23,22 @@
         $employerId = mysqli_fetch_array($query);
         return $employerId[0];
     }
+    function getEmployerData($employerId){
+        global $db;
+        $data = array();
+        $employerId = (int)$employerId;
+
+        $argsNum = func_num_args();
+        $argsVal = func_get_args();
+
+        if($argsNum > 1){
+            unset($argsVal[0]);
+            $fields = '`'.implode('`,`',$argsVal).'`';
+            $query = "SELECT $fields FROM `employer` WHERE `employerId`=$employerID";
+            $result = mysqli_query($db,$query);
+            return mysqli_fetch_assoc($result);
+        }else{
+            return false;
+        }
+    }
 ?>
