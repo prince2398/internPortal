@@ -21,7 +21,7 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
             }else{
                 $_SESSION['userId'] = $login;
                 $_SESSION['type'] = $submit;
-                header('Location: '.HOME);
+                header('Location: '.HOME.'/studentProfile.php');
                 exit();
             }
         }
@@ -37,7 +37,7 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
             }else{
                 $_SESSION['userId'] = $login;
                 $_SESSION['type'] = $submit;
-                header('Location: '.HOME);
+                header('Location: '.HOME.'/employerProfile.php');
                 exit();
             }
         }
@@ -58,7 +58,7 @@ include("includes/overall/header.php");
         <form action="login.php" class="lead" method="POST" autocomplete="off">
             <div class="form-group col-5">
                 <label>Email</label><br>
-                <input type="email" class="form-control" name="username" placeholder="Enter Email" <?php if(isset($username)) echo 'value="'.$username.'"';?> required>
+                <input type="email" class="form-control" name="username" placeholder="Enter Email" <?php if(isset($username)) echo 'value="'.$username.'"';  ?> maxlength=128 required>
             </div>
             <div class="form-group col-5">
                 <label>Password</label><br>

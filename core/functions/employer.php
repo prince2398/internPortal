@@ -1,4 +1,53 @@
 <?php
+   function internExist($title){
+        global $db;
+        $title = sanitize($title);
+
+        $query = "SELECT COUNT(`internId`) FROM `internships` WHERE `title` ='$title'";
+        $res = mysqli_query($db,$query);
+        $count = mysqli_fetch_array($res);
+        return $count[0]?true:false;
+    }
+    function postIntern($internData){
+        global $db;
+        array_walk($internData, 'arraySanitize');
+        $fields = '`'.implode('`,`', array_keys($internData)).'`';
+        $values = '\''.implode('\',\'',$internData).'\'';
+
+        $query = "INSERT INTO `internships` ($fields) VALUES ($values)";
+        echo time();
+
+        if (mysqli_query($db,$query)) {
+            $id = mysqli_insert_id($db);
+            echo $id;
+            return $id;
+        }else{
+            echo mysqli_error($db);
+            return false;
+        }
+
+    }
+    function protectForEmployer(){
+        if (isset($_SESSION['type']) && $_SESSION['type'] !== 'employer') {
+            header('Location: protected.php?file='.$_SERVER['PHP_SELF']);
+        }
+    }
+    function registerEmployer($data){
+        global $db;
+        array_walk($data, 'arraySanitize');
+        $data['password'] = password_hash($data['password'],PASSWORD_BCRYPT);
+        $fields = '`'.implode('`,`', array_keys($data)).'`';
+        $values = '\''.implode('\',\'',$data).'\'';
+
+        $query = "INSERT INTO `employer` ($fields) VALUES ($values)";
+
+        if(mysqli_query($db, $query)){
+            return true;
+        }else{
+            echo mysqli_error($db);
+            return false;
+        }
+    }
     function loginAsEmployer($username,$password){
         global $db;
         $employerId = employerIdFromUsername($username);

@@ -28,8 +28,8 @@
                             </div>
                     <?php }elseif($_SESSION['type'] === 'employer') { ?>
                               <a class="nav-link dropdown-toggle" href="employerProfile.php" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php
-                                if($data = getEmployerData($_SESSION['userId'],'companyName')){
-                                  echo $data['companyName'];
+                                if($data = getEmployerData($_SESSION['userId'],'firstName')){
+                                  echo $data['firstName'];
                                 }
                               ?></a>
                               <div class="dropdown-menu" aria-labelledby="dropdown01">

@@ -1,4 +1,25 @@
 <?php
+    function protectForStudent(){
+        if (isset($_SESSION['type']) && $_SESSION['type'] !== 'student') {
+            header('Location: protected.php?file='.$_SERVER['PHP_SELF']);
+        }
+    }
+    function registerStudent($data){
+        global $db;
+        array_walk($data, 'arraySanitize');
+        $data['password'] = password_hash($data['password'],PASSWORD_BCRYPT);
+        $fields = '`'.implode('`,`', array_keys($data)).'`';
+        $values = '\''.implode('\',\'',$data).'\'';
+
+        $query = "INSERT INTO `student` ($fields) VALUES ($values)";
+
+        if(mysqli_query($db, $query)){
+            return true;
+        }else{
+            echo mysqli_error($db);
+            return false;
+        }
+    }
     function loginAsStudent($username,$password){
         global $db;
         $studentId = studentIdFromUsername($username);
