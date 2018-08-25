@@ -11,7 +11,7 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
         $errors[] = "You need to enter both Username and Password.";
     }elseif($submit === 'student'){
         if (studentExist($username) === false) {
-            $errors[] = 'Username is not Registered. Click on Register to register';
+            $errors[] = 'Student with this email is not Registered. Click on Register to register';
         }elseif (strlen($password) >32) {
             $errors[] = "Password too long";
         }else{
@@ -27,7 +27,7 @@ if(isset($_POST['submit']) && !empty($_POST['submit'])){
         }
     }elseif ($submit === 'employer') {
         if (employerExist($username) === false) {
-            $errors[] = 'Username is not Registered. Click on Register to register';
+            $errors[] = 'Employer with this email is not Registered. Click on Register to register';
         }elseif (strlen($password) >32) {
             $errors[] = "Password too long";
         }else{

@@ -1,4 +1,23 @@
 <?php
+    function getPostedInternIds($id){
+        global $db;
+        $id =(int)sanitize($id);
+        $ids = array();
+        $res = mysqli_query($db,"SELECT `internId` FROM `internships` WHERE `employerId`= $id ORDER BY `time` DESC");
+        while($row = mysqli_fetch_assoc($res)){
+            $ids[] = $row['internId'];
+        }
+        return $ids;
+    }
+    function incrementPostedCount($id){
+        global $db;
+        $id = sanitize($id);
+
+        $query = "UPDATE `employer` SET `postedCount` = `postedCount`+1 WHERE `employerId`=$id";
+        if (!mysqli_query($db,$query)) {
+            echo 'posted count: ',mysqli_error($db);
+        }
+    }
    function internExist($title){
         global $db;
         $title = sanitize($title);
@@ -15,17 +34,16 @@
         $values = '\''.implode('\',\'',$internData).'\'';
 
         $query = "INSERT INTO `internships` ($fields) VALUES ($values)";
-        echo time();
 
         if (mysqli_query($db,$query)) {
             $id = mysqli_insert_id($db);
-            echo $id;
+            incrementPostedCount($internData['employerId']);
             return $id;
         }else{
             echo mysqli_error($db);
             return false;
         }
-
+        return true;
     }
     function protectForEmployer(){
         if (isset($_SESSION['type']) && $_SESSION['type'] !== 'employer') {

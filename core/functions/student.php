@@ -1,4 +1,58 @@
 <?php
+    function getStudentIds($internId){
+        global $db;
+        $internId = sanitize($internId);
+        $ids = array();
+        $res = mysqli_query($db,"SELECT `studentId` FROM `applications` WHERE `internId` = $internId ORDER BY `time` ASC");
+        while($row = mysqli_fetch_assoc($res)){
+            $ids[] = $row['studentId'];
+        }
+        return $ids;
+    }
+    function getAppliedInternIds($id){
+        global $db;
+        $id = sanitize($id);
+
+        $ids = array();
+
+        $res = mysqli_query($db,"SELECT `internId` FROM `applications` WHERE `studentId` = $id ORDER BY `time` DESC");
+        while($row = mysqli_fetch_assoc($res)){
+            $ids[] = $row['internId'];
+        }
+        return $ids;
+    }
+    function incrementAppliedCount($id){
+        global $db;
+        $id = sanitize($id);
+
+        $query = "UPDATE `student` SET `appliedCount` = `appliedCount`+1 WHERE `studentId`=$id";
+        if (!mysqli_query($db,$query)) {
+            echo 'applied count: ',mysqli_error($db);
+        }
+    }
+    function alreadyApplied($studentId,$internId){
+        global $db;
+        $studentId = (int)sanitize($studentId);
+        $internId = (int)sanitize($internId);
+        $query = "SELECT COUNT(`applicationId`) FROM `applications` WHERE `studentId` = $studentId && `internId` = $internId";
+        $res = mysqli_query($db,$query);
+        $count = mysqli_fetch_array($res);
+        return $count[0]?true:false;
+    }
+    function applyIntern($studentId,$internId){
+        global $db;
+        $studentId = (int)sanitize($studentId);
+        $internId = (int)sanitize($internId);
+        $query = "INSERT INTO `applications` (`studentId`,`internId`) VALUES ($studentId,$internId)";
+        if (mysqli_query($db,$query)) {
+            incrementApplicationCount($internId);
+            incrementAppliedCount($studentId);
+            return true;
+        }else{
+            echo mysqli_error($db);
+            return false;
+        }
+    }
     function protectForStudent(){
         if (isset($_SESSION['type']) && $_SESSION['type'] !== 'student') {
             header('Location: protected.php?file='.$_SERVER['PHP_SELF']);
