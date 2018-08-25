@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 23, 2018 at 10:54 PM
+-- Generation Time: Aug 25, 2018 at 10:00 PM
 -- Server version: 5.7.23-0ubuntu0.18.04.1
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -33,13 +33,6 @@ CREATE TABLE `applications` (
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `applications`
---
-
-INSERT INTO `applications` (`applicationId`, `internId`, `studentId`, `time`) VALUES
-(1, 1, 1, '2018-08-22 18:04:02');
-
 -- --------------------------------------------------------
 
 --
@@ -48,18 +41,13 @@ INSERT INTO `applications` (`applicationId`, `internId`, `studentId`, `time`) VA
 
 CREATE TABLE `employer` (
   `employerId` int(11) NOT NULL,
+  `firstName` varchar(64) NOT NULL,
+  `lastName` varchar(64) NOT NULL,
   `email` varchar(32) NOT NULL,
   `password` varchar(64) NOT NULL,
   `companyName` varchar(128) DEFAULT NULL,
   `postedCount` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employer`
---
-
-INSERT INTO `employer` (`employerId`, `email`, `password`, `companyName`, `postedCount`) VALUES
-(1, 'employer@employer.com', '$2y$12$eBbQ7xbI/d7cn.Iq.zCX4enagqe/7TXd7cfxMLxd.sypYcr0wp6LK', 'sample pvt ltd', 0);
 
 -- --------------------------------------------------------
 
@@ -69,19 +57,15 @@ INSERT INTO `employer` (`employerId`, `email`, `password`, `companyName`, `poste
 
 CREATE TABLE `internships` (
   `internId` int(11) NOT NULL,
+  `title` varchar(256) NOT NULL,
   `profile` varchar(64) NOT NULL,
   `employerId` int(11) NOT NULL,
   `description` text NOT NULL,
-  `requirement` text NOT NULL,
+  `requirements` text NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deadline` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `applicationCount` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `internships`
---
-
-INSERT INTO `internships` (`internId`, `profile`, `employerId`, `description`, `requirement`, `applicationCount`) VALUES
-(1, 'Sample Profile', 1, 'sample profile is open for every aspiring student in the field of sample', 'requirement :\r\nbtech(comp)\r\nmin 5 cgpa', 0);
 
 -- --------------------------------------------------------
 
@@ -91,21 +75,14 @@ INSERT INTO `internships` (`internId`, `profile`, `employerId`, `description`, `
 
 CREATE TABLE `student` (
   `studentId` int(11) NOT NULL,
-  `email` varchar(32) NOT NULL,
+  `email` varchar(128) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `firstName` varchar(32) DEFAULT NULL,
-  `lastName` varchar(32) DEFAULT NULL,
-  `institue` varchar(128) DEFAULT NULL,
+  `firstName` varchar(64) DEFAULT NULL,
+  `lastName` varchar(64) DEFAULT NULL,
+  `institute` varchar(128) DEFAULT NULL,
   `profile` varchar(64) DEFAULT NULL,
   `appliedCount` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`studentId`, `email`, `password`, `firstName`, `lastName`, `institue`, `profile`, `appliedCount`) VALUES
-(1, 'sample@sample.com', '$2y$11$WTs.aI0ECPAdWz8Hxmb.L.SHMmD/7s1M8UX3qHILbYgkJcj2V8qe6', 'Sample', 'Student', 'Sample technological University', 'Sample Profile', 0);
 
 --
 -- Indexes for dumped tables
@@ -145,22 +122,22 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `applicationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `applicationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `employer`
 --
 ALTER TABLE `employer`
-  MODIFY `employerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `employerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `internships`
 --
 ALTER TABLE `internships`
-  MODIFY `internId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `internId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `studentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `studentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
