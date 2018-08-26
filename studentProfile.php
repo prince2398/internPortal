@@ -28,15 +28,14 @@ include("includes/overall/header.php");
               $data['company'] = $company['companyName'];
       ?>
       <div class="jumbotron row">
-        <div class="col-10">
+        <div class="col-md-10">
           <h3><?php echo $data['title'];?></h3>
           <h5>by <?php echo $data['company'];?></h5>
           <h5>Profile: <?php echo $data['profile']; ?></h5>
         </div>
-        <div class="col-2">
+        <div class="col-md-2">
           <br>
-          <a href="intern.php?id=<?php echo $id;?>" class="btn btn-primary"> Learn more...
-          </a>
+          <a href="intern.php?id=<?php echo $id;?>" class="btn btn-primary">Learn more</a>
         </div>
       </div>
     <?php
