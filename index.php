@@ -12,16 +12,16 @@
 
      ?>
       <div class="jumbotron row">
-        <div class="col-8">
+        <div class="col-md-7">
           <h3><?php echo $data['title'];?></h3>
           <h5>by <?php echo $data['company'];?></h5>
           <h5>Profile: <?php echo $data['profile']; ?></h5>
         </div>
-        <div class="col-2">
+        <div class="col-md-3">
           <h6>Deadline</h6>
           <p><?php echo $data['deadline']; ?></p>
         </div>
-        <form class="col-2" action="intern.php?id=<?php echo $data['internId'];?>" method="POST">
+        <form class="col-md-2" action="intern.php?id=<?php echo $data['internId'];?>" method="POST">
           <button type="submit" class="btn btn-primary form-group" <?php if (loggedin() && ($_SESSION['type']==='employer')) { echo 'disabled';}?>>Apply</button>
         </form>
       </div>

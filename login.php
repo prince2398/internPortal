@@ -56,17 +56,17 @@ include("includes/overall/header.php");
                 ?>
         </div>
         <form action="login.php" class="lead" method="POST" autocomplete="off">
-            <div class="form-group col-5">
+            <div class="form-group col-md-6">
                 <label>Email</label><br>
                 <input type="email" class="form-control" name="username" placeholder="Enter Email" <?php if(isset($username)) echo 'value="'.$username.'"';  ?> maxlength=128 required>
             </div>
-            <div class="form-group col-5">
+            <div class="form-group col-md-6">
                 <label>Password</label><br>
                 <input type="password" class="form-control" name="password" maxlength = 32 minlength = 8 placeholder="Enter Password" required>
             </div>
              <div class="form-group">
-                <button type="submit" name="submit" class="btn btn-primary" value="student">Login as Student</button>
-                <button type="submit" name="submit" class="btn btn-primary" value="employer">Login as Employer</button>
+                <button type="submit" name="submit" class="btn btn-primary col-md-3" value="student">Login as Student</button>
+                <button type="submit" name="submit" class="btn btn-primary col-md-3" value="employer">Login as Employer</button>
             </div>
         </form>
     </main>
