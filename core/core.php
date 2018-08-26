@@ -1,7 +1,7 @@
 <?php
     define("DBHOST",'localhost');
     define("DBUSER",'root');
-    define("DBPASSWORD",'Prince2398');
+    define("DBPASSWORD",'');
     define("DBNAME", 'intern');
     define("HOME",'/internPortal');
 
