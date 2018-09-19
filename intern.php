@@ -27,7 +27,7 @@ include("includes/overall/header.php");
             </div>
         </div>
         <br><br>
-         <form action="apply.php?id=<?php echo $internData['internId']; ?>" method="POST">
+         <form action="apply.php?id=<?php echo $internData['internId']; ?>" method="POST" > 
             <button type="submit" class="btn btn-primary" <?php if (loggedin() && $_SESSION['type'] !== 'student') {
                 echo 'disabled';
             }?> >Apply</button>
